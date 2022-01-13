@@ -1,0 +1,237 @@
+$standardSpace: 16px;
+$fontStyle: $standardSpace sans-serif;
+$maxWidth: 1200px;
+
+$primaryColor: #6183dd;
+$secondaryColor: #333;
+$terciaryColor: #fff;
+$quaternaryColor: #e3e3e3;
+$quintanaryColor: #e64d4d;
+$shadow: 0 0 10px rgba(51, 51, 51, 0.2);
+$backdrop: rgba(0, 0, 0, 0.3);
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: $fontStyle;
+  color: $secondaryColor;
+}
+
+button {
+  font: $fontStyle;
+  padding: $standardSpace;
+  background-color: $primaryColor;
+  border: $primaryColor 2px solid;
+  color: $terciaryColor;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: $terciaryColor;
+    color: $primaryColor;
+  }
+}
+
+.red-btn {
+  background-color: $quintanaryColor;
+  border-color: $quintanaryColor;
+
+  &:hover {
+    color: $quintanaryColor;
+  }
+}
+
+input {
+  font: $fontStyle;
+  padding: $standardSpace;
+  background-color: $quaternaryColor;
+  border: none;
+
+  &[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+nav {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .nav-container {
+    max-width: $maxWidth;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img {
+      height: 50px;
+      cursor: pointer;
+    }
+
+    button {
+      max-width: 150px;
+    }
+  }
+}
+
+.input-section {
+  height: 40vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    max-width: $maxWidth;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-size: 2 * $standardSpace;
+      margin: $standardSpace;
+    }
+
+    .form-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      grid-gap: $standardSpace;
+    }
+
+    .product-inputs {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      width: 100%;
+      grid-gap: $standardSpace;
+    }
+  }
+}
+
+.products-section {
+  min-height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .products-container {
+    max-width: $maxWidth;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-gap: $standardSpace;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .cards {
+      padding: $standardSpace;
+      box-shadow: $shadow;
+
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      button {
+        position: absolute;
+        bottom: 0;
+      }
+
+      h2 {
+        font-size: $standardSpace;
+        text-align: center;
+        margin-bottom: $standardSpace * 2;
+      }
+
+      h1 {
+        font-size: $standardSpace * 2.5;
+      }
+
+      .card-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: $standardSpace;
+        margin-top: $standardSpace * 2;
+
+        .card-info-detail:last-child {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: $backdrop;
+
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .close-modal-btn {
+    position: fixed;
+    top: 0;
+    border: none;
+  }
+
+  .modal {
+    background-color: $terciaryColor;
+    max-width: 600px;
+    width: 100%;
+    min-height: 50vh;
+    padding: $standardSpace * 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin-bottom: $standardSpace;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      input {
+        margin: $standardSpace 0;
+      }
+
+      button {
+        margin: $standardSpace 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: $secondaryColor;
+
+        a:hover {
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+}
