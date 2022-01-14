@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import api from '../../Services/api'
 
 function RegisterModal({setLoginForm}) {
+  const history = useHistory()
   const [name, setName] = useState('')
   const [whatsapp, setWhatsapp] = useState(0)
   const [email, setEmail] = useState('')
@@ -26,6 +27,7 @@ function RegisterModal({setLoginForm}) {
         longitude
       })
       alert('Cadastro realizado com sucesso')
+      history.go(0)
     } catch (error) {
       alert('Erro ao cadastrar usuario, tente novamente')
     }
@@ -37,7 +39,7 @@ function RegisterModal({setLoginForm}) {
       setLongitude(longitude)
     }, (error) => {
       console.log(error)
-    }, { timeout: 10000 }
+    }, { timeout: 15000, enableHighAccuracy: true }
     ) 
   }
   return (
