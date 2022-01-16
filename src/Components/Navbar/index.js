@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/logo-local-commerce.jpg'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../../Context/UserContext'
 
@@ -30,10 +30,10 @@ function Navbar({setModal}) {
         
         {userData.isLogged ? 
         <>
-        <p>Olá, {userData.name}</p>
+        <p>Seja bem-vindo(a), {userData.name}!</p>
         <button className="red-btn" onClick={logoutHandler}>SAIR</button>
         </> :
-        <button onClick={setModal}>ENTRAR</button>}
+        <button onClick={setModal}>ANUNCIE</button>}
       </div>
     </nav>
   )

@@ -4,7 +4,7 @@ import api from '../../Services/api'
 
 import { UserContext } from '../../Context/UserContext'
 
-function LoginModal({setRegisterForm}) {
+function LoginModal({setRegisterForm, setModal}) {
 const [userData, setUserData] = useContext(UserContext)
   
   const [email, setEmail] = useState('')
@@ -31,12 +31,13 @@ const [userData, setUserData] = useContext(UserContext)
     }))
     history.push('/dashboard')
   } catch (error) {
-    alert('Falha no login, tente novamente')    
+    alert('Falha no login, tente novamente.')    
   }
 }
 
   return (
     <div className="modal">
+      <Link className='close-modal-login' onClick={setModal}>X</Link>
       <h1>Entrar</h1>
         <form>
           <input 
@@ -51,7 +52,7 @@ const [userData, setUserData] = useContext(UserContext)
           onChange={e=>setPassword(e.target.value)}
           />
           <button onClick={loginHandler}>ENTRAR</button>
-          <Link onClick={setRegisterForm}>Criar conta</Link>
+          <Link onClick={setRegisterForm}>Não tem uma conta? Crie uma!</Link>
         </form>
     </div>
   )

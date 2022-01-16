@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import api from '../../Services/api'
 
-function RegisterModal({setLoginForm}) {
+import { UserContext } from '../../Context/UserContext'
+
+function RegisterModal({setLoginForm, setModal}) {
   const history = useHistory()
   const [name, setName] = useState('')
-  const [whatsapp, setWhatsapp] = useState(0)
+  const [whatsapp, setWhatsapp] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [latitude, setLatitude] = useState(0)
@@ -26,10 +28,9 @@ function RegisterModal({setLoginForm}) {
         latitude,
         longitude
       })
-      alert('Cadastro realizado com sucesso')
-      history.go(0)
+      loginHandler()
     } catch (error) {
-      alert('Erro ao cadastrar usuario, tente novamente')
+      alert('Erro ao cadastrar usuário, tente novamente.')
     }
   }
   async function getUserLocation() {
@@ -42,8 +43,32 @@ function RegisterModal({setLoginForm}) {
     }, { timeout: 15000, enableHighAccuracy: true }
     ) 
   }
+
+  const [userData, setUserData] = useContext(UserContext)
+  
+
+  async function loginHandler() {
+
+    const userData = await api.post('session', {
+      email,
+      password
+    })
+
+    const userInfo = userData.data
+
+    setUserData(prevState => ({
+      ...prevState,
+      isLogged: true,
+      email: userInfo.email,
+      name: userInfo.name,
+      _id: userInfo._id
+    }))
+    history.push('/dashboard')
+}
+
   return (
     <div className="modal">
+      <Link className='close-modal-register' onClick={setModal}>X</Link>
       <h1>Cadastrar</h1>
         <form>
           <input 
@@ -53,17 +78,15 @@ function RegisterModal({setLoginForm}) {
           onChange={e=>setName(e.target.value)}
           />
           <input 
-          type="number"  
-          placeholder="whatsapp"
+          type="tel"  
+          placeholder="telefone"
           value={whatsapp}
           maxLength={11}
-          onInput={(e)=> {if (e.target.value > e.target.maxLength) {
-            e.target.value = e.target.value.slice(0, e.target.maxLength)
-          }}}
           onChange={e=>setWhatsapp(e.target.value)}
+          onInput={e=> e.target.value = e.target.value.replace(/[^0-9]/g,'')} 
           />
           <input 
-          type="text"  
+          type="text"
           placeholder="email"
           value={email}
           onChange={e=>setEmail(e.target.value)}
@@ -75,7 +98,7 @@ function RegisterModal({setLoginForm}) {
           onChange={e=>setPassword(e.target.value)}
           />
           <button onClick={registrationHandler}>CADASTRAR</button>
-          <Link onClick={setLoginForm}>Já tenho uma conta</Link>
+          <Link onClick={setLoginForm}>Já tenho uma conta.</Link>
         </form>
     </div>
   )

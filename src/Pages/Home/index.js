@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Navbar from '../../Components/Navbar'
 import Card from '../../Components/Card'
 import Modal from '../../Components/Modal'
-import { UserContext } from '../../Context/UserContext'
 import api from "../../Services/api"
 
 
@@ -23,12 +22,12 @@ function Home() {
 
   async function getUserLocation() {
       navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords
-      setLatitude(latitude)
-      setLongitude(longitude)
+      const { latitude, longitude } = position.coords;
+      setLatitude(latitude);
+      setLongitude(longitude);
     }, (error) => {
-      console.log(error)
-    }, { timeout: 10000 }
+      console.log(error);
+    }, { timeout: 10000, enableHighAccuracy: true }
     )
   }
 
@@ -65,18 +64,18 @@ function Home() {
       <Navbar setModal={setModal}/>
       <section className="input-section">
         <form>
-          <h1>Pesquisar produtos</h1>
+          <h1>Pesquisar por Produtos</h1>
           <div className="form-inputs">
             <input 
             type="text" 
-            placeholder="pesquisar por nome do produto"
+            placeholder="Pesquisar por nome do produto"
             value={productsByName}
             onChange={e => setProductsByName(e.target.value)}
             />
             <input 
             type="number" 
             min="0" 
-            placeholder="preço máximo"
+            placeholder="Preço máximo"
             value={productsByMaxPrice}
             onChange={e=>setProductsByMaxPrice(e.target.value)}
 
@@ -85,8 +84,10 @@ function Home() {
         </form>
       </section>
       <section className="products-section">
+        {filteredProductsData.length !== 0 ?
         <div className="products-container">
-        {filteredProductsData.map(product => (
+        {
+        filteredProductsData.map(product => (
             <Card 
               key={product._id}
               name={product.name}
@@ -95,7 +96,9 @@ function Home() {
               userNumber={product.user.whatsapp}
             />
           ))}
-        </div>
+        </div> :
+        <h1>Nenhum produto foi encontrado por perto...</h1>
+        }        
       </section>
       {isModalOpen ? <Modal setModal={setModal}/> : null}
     </>

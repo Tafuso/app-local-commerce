@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+
 $standardSpace: 16px;
-$fontStyle: $standardSpace sans-serif;
+$fontStyle: $standardSpace 'PT Sans', Helvetica, sans-serif;
 $maxWidth: 1200px;
 
 $primaryColor: #6183dd;
@@ -24,6 +26,8 @@ body {
 
 button {
   font: $fontStyle;
+  font-weight: 700;
+  letter-spacing: 1px;
   padding: $standardSpace;
   background-color: $primaryColor;
   border: $primaryColor 2px solid;
@@ -57,6 +61,7 @@ input {
 }
 
 nav {
+  margin-top: 2vh;
   height: 10vh;
   display: flex;
   flex-direction: column;
@@ -74,10 +79,17 @@ nav {
     img {
       height: 50px;
       cursor: pointer;
+      width: 150px;
     }
 
     button {
       max-width: 150px;
+    }
+
+    p {
+      font-weight: 700;
+      color: $secondaryColor;
+      letter-spacing: 1px;
     }
   }
 }
@@ -121,11 +133,12 @@ nav {
 }
 
 .products-section {
-  min-height: 50vh;
+  min-height: 46vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2vh;
 
   .products-container {
     max-width: $maxWidth;
@@ -195,6 +208,22 @@ nav {
     border: none;
   }
 
+  .close-modal-login {
+    color: $secondaryColor;
+    position: absolute;
+    z-index: 10px;
+    margin-top: -350px;
+    margin-left: 500px;
+  }
+
+  .close-modal-register {
+    color: $secondaryColor;
+    position: absolute;
+    z-index: 10px;
+    margin-top: -520px;
+    margin-left: 500px;
+  }
+
   .modal {
     background-color: $terciaryColor;
     max-width: 600px;
@@ -206,6 +235,11 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    a {
+      font-weight: 700;
+      text-decoration: none;
+    }
 
     h1 {
       margin-bottom: $standardSpace;
@@ -225,11 +259,10 @@ nav {
       }
 
       a {
-        text-decoration: none;
-        color: $secondaryColor;
+        color: $primaryColor;
 
-        a:hover {
-          color: $primaryColor;
+        &:hover {
+          color: $secondaryColor;
         }
       }
     }

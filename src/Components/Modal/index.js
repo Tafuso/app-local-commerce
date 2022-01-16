@@ -15,8 +15,7 @@ function Modal({ setModal }) {
   
   return (
     <div className="backdrop">
-      <button className='close-modal-btn' onClick={setModal}>Fechar</button>
-      {isLogin ? <LoginModal setRegisterForm={setRegisterForm}/> : <RegisterModal setLoginForm={setLoginForm}/>}
+      {isLogin ? <LoginModal setRegisterForm={setRegisterForm} setModal={setModal}/> : <RegisterModal setLoginForm={setLoginForm} setModal={setModal}/>}
     </div>
   )
 }

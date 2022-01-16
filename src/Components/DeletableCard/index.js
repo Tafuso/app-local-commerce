@@ -7,7 +7,7 @@ function DeletableCard({ name, price, userName, userNumber, deleteProductHandler
       <button 
       className='red-btn'
       onClick={deleteProductHandler}
-      >EXCLUIR</button>
+      >EXCLUIR 🗑️</button>
       <h2>{name}</h2>
       <h1>R$ {price.toFixed(2)}</h1>
       <div className="card-info">

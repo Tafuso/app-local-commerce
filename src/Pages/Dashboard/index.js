@@ -6,7 +6,7 @@ import api from "../../Services/api"
 
 function Dashboard() {
   const [productName, setProductName] = useState("")
-  const [productPrice, setProductPrice] = useState(0)
+  const [productPrice, setProductPrice] = useState("")
   const [productsData, setProductsData] = useState([])
 
   const [userData] = useContext(UserContext)
@@ -25,11 +25,10 @@ function Dashboard() {
           auth: userData._id
         }
       })
-      alert('Produto cadastrado com sucesso')
       setProductName('')
       setProductPrice('')
     } catch (error) {
-      alert('Falha ao adicionar produto, tente novamente')    
+      alert('Falha ao adicionar produto, tente novamente.')    
     }
   }
 
@@ -55,9 +54,8 @@ function Dashboard() {
           auth: userData._id
         }
       })
-      alert('Produto removido com sucesso')
     } catch (error) {
-      alert('Erro ao deletar produto, tente novamente')    
+      alert('Erro ao deletar produto, tente novamente.')    
     }
   }
 
