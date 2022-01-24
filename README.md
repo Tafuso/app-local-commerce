@@ -14,7 +14,7 @@ Na Dashboard, o usuário, pode cadastrar seu produto, mas antes deve fazer login
 
  <img src="https://user-images.githubusercontent.com/78443398/150017057-696d3088-d642-4783-83ca-84998cd72403.png" alt="home" width="750">
 
-A página acima é o Home, onde que coleta os anúncios nas proximidas do banco de dados e traz a visualização deles para o front end.
+A página acima é o Home, que a partir da geolocalização do usuário coleta os anúncio do banco de dados que foram cadastrados nas proximidades e traz a visualização deles para o front end.
 A localização é recebida automaticamente, através das permissões do navegador e os dados são recarregados toda vez que ela se altera.
 
 
